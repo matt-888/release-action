@@ -1,0 +1,23 @@
+name: release
+
+inputs:
+
+  token:
+    description: 'Fine-grained PAT with correct perms'
+    type: string
+    required: true
+
+  type:
+    description: 'Release type (passed to release-please)'
+    type: string
+    default: 'simple'
+
+runs:
+  using: 'composite'
+  steps:
+
+    - name: Release Please
+      uses: googleapis/release-please-action@v4
+      with:
+        token: ${{ inputs.token }}
+        release-type: ${{ inputs.type }}
